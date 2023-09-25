@@ -1,0 +1,109 @@
+'''Write a python program create csv file student.csv(sid,sname,city,contact) using 10 records 
+
+(in which 5 records input directly and 5 records take input from user) write records into this file.
+
+Read this file using csv module and print it. 
+
+NOTE: Reading and writting must be perform using python script.'''
+
+import csv
+--->create and write the records in csv file
+
+with open("c://sqlite3//student_csv.csv","w",newline="")as stud:
+    write=csv.writer(stud)
+    #create header of a csv file
+    header=['S_Id','S_Name','City','Contact']
+    write.writerow(header)
+    #5 record's insert directly in csv file
+    rows=[
+          [1,'Nikunj','Bardoli',9086543569],
+          [2,'Jay','Surat',9976645670],
+          [3,'Hiren','vyara',9876567890],
+          [4,'Viral','Surat',7645678909],
+          [5,'Payal','bardoli',7987656799]
+         ]
+    write.writerows(rows)
+    print('Record Inserted successful')
+    
+---> 5 records insert using user input
+
+   #create empty list
+    l=[]
+    #iterate the loop for entering multiple records
+    for record in range(5):
+        n=int(input('Enter Student ID:'))
+        name=input('Enter Student Name: ')
+        city=input('Enter City Name: ')
+        contact=int(input('Enter Contact Number:'))
+        #append records in a variable 'store'
+        store=[n,name,city,contact]
+        #append the records in list
+        l.append(store)
+        #write the rows in a csv file
+    write.writerows(l)
+    print('Record Inserted successful')
+
+--->read csv file using DictrReader()
+with open("c://sqlite3//student_csv.csv","r")as stud:
+    r=csv.DictReader(stud)
+    for i in r:
+        print(i)
+print()
+
+
+Output:-
+--------------------------------------------------------------------------------------------------------
+Enter Student ID:6
+Enter Student Name: Arun
+Enter City Name: Mandvi
+Enter Contact Number:9987654567
+Enter Student ID:7
+Enter Student Name: Zaid
+Enter City Name: Kadod
+Enter Contact Number:7456321099
+Enter Student ID:8
+Enter Student Name: kajal
+Enter City Name: Bardoli
+Enter Contact Number:9976545678
+Enter Student ID:9
+Enter Student Name: mitul
+Enter City Name: Bardoli
+Enter Contact Number:9977891230
+Enter Student ID:10
+Enter Student Name: Amit
+Enter City Name: Dahod
+Enter Contact Number:9832471087
+Record Inserted successful
+
+{'S_Id': '1', 'S_Name': 'Nikunj', 'City': 'Bardoli', 'Contact': '9086543569'}	          
+{'S_Id': '2', 'S_Name': 'Jay', 'City': 'Surat', 'Contact': '9976645670'}		
+{'S_Id': '3', 'S_Name': 'Hiren', 'City': 'vyara', 'Contact': '9876567890'}
+{'S_Id': '4', 'S_Name': 'Viral', 'City': 'Surat', 'Contact': '7645678909'}
+{'S_Id': '5', 'S_Name': 'Payal', 'City': 'bardoli', 'Contact': '7987656799'}
+{'S_Id': '6', 'S_Name': 'Arun', 'City': 'Mandvi', 'Contact': '9987654567'}
+{'S_Id': '7', 'S_Name': 'Zaid', 'City': 'Kadod', 'Contact': '7456321099'}
+{'S_Id': '8', 'S_Name': 'Kajal', 'City': 'Bardoli', 'Contact': '9976545678'}
+{'S_Id': '9', 'S_Name': 'mitul', 'City': 'Bardoli', 'Contact': '9977891230'}
+{'S_Id': '10', 'S_Name': 'Amit', 'City': 'Dahod', 'Contact': '9832471087'}
+---------------------------------------------------------------------------------------------------
+--->read csv file using Reader().
+
+with open("c://sqlite3//student_csv.csv","r",newline="")as stud:
+    read=csv.reader(stud)
+    for i in read:
+        print(i)
+    
+Output:-
+---------------------------------------------------
+['S_Id', 'S_Name', 'City', 'Contact']
+['1', 'Nikunj', 'Bardoli', '9086543569']
+['2', 'Jay', 'Surat', '9976645670']
+['3', 'Hiren', 'Vyara', '9876567890']
+['4', 'Viral', 'Surat', '7645678909']
+['5', 'Payal', 'bardoli', '7987656799']
+['6', 'Arun', ' Mandvi', '9987654567']
+['7', 'Zaid', 'kadod', '7456321099']
+['8', 'kajal', 'Bardoli', '9976545678']
+['9', 'mitul', 'Bardoli', '9977891230']
+['10', 'Amit', 'Dahod', '9832471087']
+----------------------------------------------------
